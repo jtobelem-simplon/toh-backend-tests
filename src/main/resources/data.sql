@@ -1,0 +1,21 @@
+--INSERT INTO heroes (id, nom) VALUES (13, 'Bombasto');
+--INSERT INTO heroes (id, nom) VALUES (14, 'Celeritas');
+--INSERT INTO heroes (id, nom) VALUES (18, 'Dr IQ');
+--INSERT INTO heroes (id, nom) VALUES (11, 'Dr Nice');
+--INSERT INTO heroes (id, nom) VALUES (17, 'Dynama');
+--INSERT INTO heroes (id, nom) VALUES (19, 'Magma');
+--INSERT INTO heroes (id, nom) VALUES (15, 'Magneta');
+--INSERT INTO heroes (id, nom) VALUES (12, 'Narco');
+--INSERT INTO heroes (id, nom) VALUES (16, 'RubberMan');
+--INSERT INTO heroes (id, nom) VALUES (20, 'Tornado');
+
+INSERT INTO heroes (nom) VALUES ('Bombasto');
+INSERT INTO heroes (nom) VALUES ('Celeritas');
+INSERT INTO heroes (nom) VALUES ('Dr IQ');
+INSERT INTO heroes (nom) VALUES ('Dr Nice');
+INSERT INTO heroes (nom) VALUES ('Dynama');
+INSERT INTO heroes (nom) VALUES ('Magma');
+INSERT INTO heroes (nom) VALUES ('Magneta');
+INSERT INTO heroes (nom) VALUES ('Narco');
+INSERT INTO heroes (nom) VALUES ('RubberMan');
+INSERT INTO heroes (nom) VALUES ('Tornado');
