@@ -1,7 +1,10 @@
 # heroes-backend-tests
 
+
 #### But
-> Le but de ce projet est tester isolément  les couches (*layers*) d'une application MVC structurée avec spring.
+> Le but de ce projet est tester isolément  les couches (*layers*) du backend d'une application MVC structurée avec spring.
+
+Pour illustrer les tests, je vous propose un projet qui permet de lister, trouver et créer des super héros.
 
 Voici un diagramme de notre application :
 ![diag](diag.png)
