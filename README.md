@@ -1,10 +1,10 @@
-# heroes-backend-tests
+# toh-backend-tests
+
+Ce projet réalise le backend du tutoriel tour of heroes d'angular. Il permet d'illustrer les tests d'une application MVC.
 
 
 #### But
-> Le but de ce projet est tester isolément  les couches (*layers*) du backend d'une application MVC structurée avec spring.
-
-Pour illustrer les tests, je vous propose un projet qui permet de lister, trouver et créer des super héros.
+> Tester isolément  les couches (*layers*) du backend d'une application MVC structurée avec spring.
 
 Voici un diagramme de notre application :
 ![diag](diag.png)
