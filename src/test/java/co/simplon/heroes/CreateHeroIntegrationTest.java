@@ -17,7 +17,7 @@ import co.simplon.heroes.model.Hero;
 public class CreateHeroIntegrationTest {
 
 	@Autowired
-	private TestRestTemplate restTemplate;
+	private TestRestTemplate restTemplate; 
 
 	/**
 	 * Crée un héro en utilisant l'api puis essaye de retrouver le héro crée.
@@ -31,20 +31,20 @@ public class CreateHeroIntegrationTest {
 
 		// TODO le passage de paramètre ne me semble pas très propre, je n'ai pas trouvé
 		// comment utiliser le param request
-		ResponseEntity<Hero> responseEntityCreate = restTemplate.postForEntity("/heroes/add?nom=antman", null,
+		ResponseEntity<Hero> responseEntityCreate = restTemplate.postForEntity("/heroes/add?name=antman", null,
 				Hero.class);
 		Hero hero = responseEntityCreate.getBody();
 
 		assertEquals(HttpStatus.OK, responseEntityCreate.getStatusCode());
-		assertEquals("antman", hero.getNom());
+		assertEquals("antman", hero.getName());
 
 		// TODO le passage de paramètre ne me semble pas très propre, je n'ai pas trouvé
 		// comment utiliser le param request
-		ResponseEntity<Hero> responseEntityFind = restTemplate.getForEntity("/heroes/find?nom=antman", null,
+		ResponseEntity<Hero> responseEntityFind = restTemplate.getForEntity("/heroes/find?name=antman", null,
 				Hero.class);
 		hero = responseEntityCreate.getBody();
 
 		assertEquals(HttpStatus.OK, responseEntityFind.getStatusCode());
-		assertEquals("antman", hero.getNom());
+		assertEquals("antman", hero.getName());
 	}
 }

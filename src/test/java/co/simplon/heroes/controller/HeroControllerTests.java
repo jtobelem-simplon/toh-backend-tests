@@ -63,7 +63,7 @@ public class HeroControllerTests {
 	@Test
 	public void getOne() throws Exception {
 		Hero hero = new Hero();
-		hero.setNom("antman");
+		hero.setName("antman");
 
 		// on règle le repo pour qu'il retourne un objet si on cherche l'id 42
 		when(this.heroRepository.findById(42)).thenReturn(Optional.of(hero));
@@ -71,7 +71,7 @@ public class HeroControllerTests {
 		// 1er test qui devrait trouver un obet
 		this.mockMvc.perform(get("/heroes/get?id=42")) // 1. test de l'url et 4.
 		.andExpect(status().isOk()) // 2. test du statut
-		.andExpect(jsonPath("nom").value(hero.getNom())); // 3. test de l'objet retourné
+		.andExpect(jsonPath("name").value(hero.getName())); // 3. test de l'objet retourné
 		
 		// 2nd test qui devrait ne pas trouver d'objet
 		this.mockMvc.perform(get("/heroes/get?id=13"))
@@ -81,18 +81,18 @@ public class HeroControllerTests {
 	@Test
 	public void findOne() throws Exception {
 		Hero hero = new Hero();
-		hero.setNom("antman");
+		hero.setName("antman");
 
 		// on règle le repo pour qu'il retourne un objet si on cherche le nom antman
-		when(this.heroRepository.findByNom("antman")).thenReturn(Optional.of(hero));
+		when(this.heroRepository.findByName("antman")).thenReturn(Optional.of(hero));
 
 		// 1er test qui devrait trouver un obet
-		this.mockMvc.perform(get("/heroes/find?nom=antman"))
+		this.mockMvc.perform(get("/heroes/find?name=antman"))
 		.andExpect(status().isOk())
-		.andExpect(jsonPath("nom").value(hero.getNom()));
+		.andExpect(jsonPath("name").value(hero.getName()));
 		
 		// 2nd test qui devrait ne pas trouver d'objet
-		this.mockMvc.perform(get("/heroes/find?nom=joker"))
+		this.mockMvc.perform(get("/heroes/find?name=joker"))
 		.andExpect(status().isNotFound());
 	}
 	
@@ -117,7 +117,7 @@ public class HeroControllerTests {
 		when(this.heroRepository.save(new Hero(any()))).thenReturn(heroWithId);
 
 		// j'ai juste stocké le resultat dans un objet pour debugger, mais on peut faire comme dans les méthodes précédentes
-		ResultActions result = this.mockMvc.perform(post("/heroes/add?nom=antman"));
+		ResultActions result = this.mockMvc.perform(post("/heroes/add?name=antman"));
 		
 		result.andExpect(status().isOk())
 		.andExpect(jsonPath("id").value(heroWithId.getId()));

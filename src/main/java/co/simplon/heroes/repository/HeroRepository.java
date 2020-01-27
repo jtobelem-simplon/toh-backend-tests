@@ -17,5 +17,5 @@ public interface HeroRepository extends CrudRepository<Hero, Integer> {
 	
 	// on peut générer automatiquement des méthodes de recherche dans le repository
 	// https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation
-	public Optional<Hero> findByNom(String nom);
+	Optional<Hero> findByName(String nom);
 }

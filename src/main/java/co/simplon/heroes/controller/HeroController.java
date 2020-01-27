@@ -4,12 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import co.simplon.heroes.model.Hero;
 import co.simplon.heroes.repository.HeroRepository;
@@ -22,21 +17,28 @@ import co.simplon.heroes.repository.HeroRepository;
  *
  */
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(path = "/heroes") 
 public class HeroController {
 
-	@Autowired
+	// 1- Permet d'intialiser le repo, par le mécanisme d'injection de dépendannce (IOC) (on peut commenter 1- xor 2-)
+//	@Autowired
 	private HeroRepository heroRepository;
 
+	// 2- Permet d'intialiser le repo, par le mécanisme d'injection de dépendannce (IOC) (on peut commenter 1- xor 2-)
+    public HeroController(HeroRepository heroRepository) {
+        this.heroRepository = heroRepository;
+    }
+
 	/**
-	 * Crée un nouvel hero avec le nom spécifié et l'enregistre en base.
-	 * @param nom
+	 * Crée un nouvel hero avec le name spécifié et l'enregistre en base.
+	 * @param name
 	 * @return le hero stocké en bdd (avec l'id à jour si généré)
 	 */
-	@PostMapping(path = "/add") 
-	public Hero addNew(@RequestParam String nom) {
+	@PostMapping(path = "/add")
+	public Hero addNew(@RequestParam String name) {
 		Hero newHero = new Hero();
-		newHero.setNom(nom);
+		newHero.setName(name);
 		return heroRepository.save(newHero);
 	}
 
@@ -66,13 +68,13 @@ public class HeroController {
 	}
 	
 	/**
-	 * Cherche un hero de nom spécifié.
-	 * @param nom
+	 * Cherche un hero de name spécifié.
+	 * @param name
 	 * @return
 	 */
 	@GetMapping(path = "/find")
-	public  ResponseEntity<Hero> findOne(@RequestParam String nom) {
-		Optional<Hero> optHero = heroRepository.findByNom(nom);
+	public  ResponseEntity<Hero> findOne(@RequestParam String name) {
+		Optional<Hero> optHero = heroRepository.findByName(name);
 		if (optHero.isPresent()) {
 			return ResponseEntity.ok(optHero.get());
 		}

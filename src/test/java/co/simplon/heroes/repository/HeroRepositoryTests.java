@@ -9,6 +9,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import co.simplon.heroes.model.Hero;
 
+import java.util.Optional;
+
 /**
  * Une classe pour tester les méthodes du repository. Il n'est pas nécessaire de
  * tester les méthodes héritées de CrudRepository (on fait confiance à Oracle
@@ -43,12 +45,14 @@ public class HeroRepositoryTests {
 	@Test
 	public void findHeroByNom() {
 		Hero hero = new Hero();
-		hero.setNom("antman");
+		hero.setName("antman");
 
 		// après avoir été sauvé, il se peut que son id soit mis à jour
 		Hero savedHero = testEntityManager.persistFlushFind(hero);
 
-		Hero resultHero = this.heroRepo.findByNom("antman").get();
-		assertThat(resultHero.getNom()).isEqualTo(savedHero.getNom());
+		Optional<Hero> resultHero = this.heroRepo.findByName("antman");
+
+		assertThat(resultHero.isPresent());
+		assertThat(resultHero.get().getName()).isEqualTo(savedHero.getName());
 	}
 }

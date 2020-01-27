@@ -22,7 +22,7 @@ public class Hero {
 	// IDENTITY : on délègue à la bdd l'action de générer l'id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String nom;
+	private String name;
 
 	public Hero() {
 		// le fait d'avoir créée un constructeur avec un paramètre oblige à écrire
@@ -36,10 +36,10 @@ public class Hero {
 	/**
 	 * Construit un hero avec le nom spécifié.
 	 * 
-	 * @param nom
+	 * @param name
 	 */
-	public Hero(String nom) {
-		this.nom = nom;
+	public Hero(String name) {
+		this.name = name;
 	}
 
 
@@ -51,12 +51,12 @@ public class Hero {
 		this.id = id;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getName() {
+		return name;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }
