@@ -32,13 +32,10 @@ public class HeroController {
 
 	/**
 	 * Crée un nouvel hero avec le name spécifié et l'enregistre en base.
-	 * @param name
 	 * @return le hero stocké en bdd (avec l'id à jour si généré)
 	 */
-	@PostMapping(path = "/add")
-	public Hero addNew(@RequestParam String name) {
-		Hero newHero = new Hero();
-		newHero.setName(name);
+	@PostMapping
+	public @ResponseBody Hero addNew(@RequestBody Hero newHero) {
 		return heroRepository.save(newHero);
 	}
 
@@ -46,19 +43,19 @@ public class HeroController {
 	 * Retourne tous les heros de la base.
 	 * @return une liste de heros
 	 */
-	@GetMapping(path = "/all")
+	@GetMapping
 	public @ResponseBody Iterable<Hero> getAll() {
 		return heroRepository.findAll();
 	}
 	
 	/**
 	 * Retourne le hero d'id spécifié.
-	 * @param id
+	 * @param heroID
 	 * @return
 	 */
-	@GetMapping(path = "/get")
-	public  ResponseEntity<Hero> getOne(@RequestParam int id) {
-		Optional<Hero> optHero = heroRepository.findById(id);
+	@GetMapping(path = "/{heroID}")
+	public  ResponseEntity<Hero> getOne(@PathVariable int heroID) {
+		Optional<Hero> optHero = heroRepository.findById(heroID);
 		if (optHero.isPresent()) {
 			return ResponseEntity.ok(optHero.get());
 		}

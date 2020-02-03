@@ -13,11 +13,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
@@ -50,15 +54,15 @@ public class HeroControllerTests {
 	// post, on peut ainsi générer facilement les json à partir d'objet java 
 	// (donc facile d'écrire un json pour les tests).
 
-//	@Autowired
-//	private ObjectMapper objectMapper;
+	@Autowired
+	private ObjectMapper objectMapper;
 
-//	JacksonTester<Hero> heroJacksonTester;
+	JacksonTester<Hero> heroJacksonTester;
 
-//	@BeforeEach
-//	public void setUp() {
-//		JacksonTester.initFields(this, objectMapper);
-//	}
+	@BeforeEach
+	public void setUp() {
+		JacksonTester.initFields(this, objectMapper);
+	}
 
 	@Test
 	public void getOne() throws Exception {
@@ -69,12 +73,12 @@ public class HeroControllerTests {
 		when(this.heroRepository.findById(42)).thenReturn(Optional.of(hero));
 
 		// 1er test qui devrait trouver un obet
-		this.mockMvc.perform(get("/heroes/get?id=42")) // 1. test de l'url et 4.
+		this.mockMvc.perform(get("/heroes/42")) // 1. test de l'url et 4.
 		.andExpect(status().isOk()) // 2. test du statut
 		.andExpect(jsonPath("name").value(hero.getName())); // 3. test de l'objet retourné
 		
 		// 2nd test qui devrait ne pas trouver d'objet
-		this.mockMvc.perform(get("/heroes/get?id=13"))
+		this.mockMvc.perform(get("/heroes/13"))
 		.andExpect(status().isNotFound());
 	}
 
@@ -104,7 +108,7 @@ public class HeroControllerTests {
 		when(this.heroRepository.findAll()).thenReturn(allHeroes);
 
 		// TODO je n'ai pas trouvé comment tester le nb d'objet que contient la liste
-		this.mockMvc.perform(get("/heroes/all"))
+		this.mockMvc.perform(get("/heroes"))
 		.andExpect(status().isOk());
 	}
 
@@ -116,8 +120,11 @@ public class HeroControllerTests {
 		// on simule la creation d'un id en retournant 42 quel que soit le nom du hero sauvé
 		when(this.heroRepository.save(new Hero(any()))).thenReturn(heroWithId);
 
-		// j'ai juste stocké le resultat dans un objet pour debugger, mais on peut faire comme dans les méthodes précédentes
-		ResultActions result = this.mockMvc.perform(post("/heroes/add?name=antman"));
+		// on va créer un objet hero, puis le serialiser en json (comme ferait le front s'il voulait envoyer un hero au controller)
+		Hero heroWithoutId = new Hero("antman");
+		String jsonContent = heroJacksonTester.write(heroWithoutId).getJson();
+
+		ResultActions result = this.mockMvc.perform(post("/heroes").contentType(MediaType.APPLICATION_JSON_VALUE).content(jsonContent));
 		
 		result.andExpect(status().isOk())
 		.andExpect(jsonPath("id").value(heroWithId.getId()));
