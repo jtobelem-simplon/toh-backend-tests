@@ -17,7 +17,7 @@ import co.simplon.heroes.repository.HeroRepository;
  *
  */
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200") TODO a mettre pour un dev local
 @RequestMapping(path = "/heroes") 
 public class HeroController {
 
