@@ -18,7 +18,7 @@ import co.simplon.heroes.repository.HeroRepository;
  */
 @RestController
 //@CrossOrigin(origins = "http://localhost:4200")
-@CrossOrigin(origins = "https://llqiwmyml.github.stackblitz.io/") // deploiement avec heroku
+@CrossOrigin(origins = "*") // deploiement avec heroku
 @RequestMapping(path = "/heroes")
 public class HeroController {
 
