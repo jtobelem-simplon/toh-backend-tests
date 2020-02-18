@@ -17,8 +17,9 @@ import co.simplon.heroes.repository.HeroRepository;
  *
  */
 @RestController
-//@CrossOrigin(origins = "http://localhost:4200") TODO a mettre pour un dev local
-@RequestMapping(path = "/heroes") 
+//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://stackblitz.com/github/jtobelem-simplon/toh-angular8") // deploiement avec heroku
+@RequestMapping(path = "/heroes")
 public class HeroController {
 
 	// 1- Permet d'intialiser le repo, par le mécanisme d'injection de dépendannce (IOC) (on peut commenter 1- xor 2-)
