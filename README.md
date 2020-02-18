@@ -30,6 +30,10 @@ Les tests que nous avons développé sont :
 - tests d'intégration (on ne se moque plus^^, on teste toute la chaine)
 - un test de démarrage (qu'on peut lancer au début pour voir si l'application démarre bien sans erreur)
 
+#### Postman
+
+<https://documenter.getpostman.com/view/6373510/SWTEbbQT?version=latest>
+
 #### Liens
 - Référence pour une appli SpringBoot mysql : <https://spring.io/guides/gs/accessing-data-mysql/>
 

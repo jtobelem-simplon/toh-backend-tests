@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="0.0" y="286.0">co.simplon.heroes.model.Hero</node>
+    <node x="7.0" y="0.0">co.simplon.heroes.repository.HeroRepository</node>
+    <node x="0.0" y="101.0">co.simplon.heroes.controller.HeroController</node>
+    <node x="216.0" y="286.0">co.simplon.heroes.HeroesApplication</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="co.simplon.heroes.controller.HeroController" target="co.simplon.heroes.repository.HeroRepository">
+      <point x="0.0" y="-70.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="459.5" y="178.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
