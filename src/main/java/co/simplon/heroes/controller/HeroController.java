@@ -20,7 +20,7 @@ import co.simplon.heroes.repository.HeroRepository;
 //@CrossOrigin(origins = "http://localhost:4200")
 @CrossOrigin(origins = "*") // deploiement avec heroku
 @RequestMapping(path = "/heroes")
-public class HeroController  {
+public class HeroController   {
 
 	// 1- Permet d'intialiser le repo, par le mécanisme d'injection de dépendannce (IOC) (on peut commenter 1- xor 2-)
 //	@Autowired
