@@ -15,14 +15,18 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
 //	runtimeOnly 'mysql:mysql-connector-java'
-	runtimeOnly group: 'com.h2database', name: 'h2', version: '1.4.197'
+	runtimeOnly group: 'com.h2database', name: 'h2', version: '1.4.197' // base h2 pour envoyer sur heroku
+
+	compileOnly 'org.projectlombok:lombok:1.18.10'
+	annotationProcessor 'org.projectlombok:lombok:1.18.10'
 
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 	
-	// la base H2 est utilisée pour les tests uniquement
+	// la base H2 est utilisée pour les tests uniquement (c'était avant l'utilisation de heroku)
 	testCompile group: 'com.h2database', name: 'h2', version: '1.4.197'
 	
 }

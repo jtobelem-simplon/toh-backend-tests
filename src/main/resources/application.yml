@@ -1,0 +1,16 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+#  # bdd mysql
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/heroes
+#    username: simplon
+#    password: simplon.co
+#
+#    # pour importer le data.sql au demarrage
+#    initialization-mode: always
+#    continueOnError: true
+
+
