@@ -1,7 +1,7 @@
 plugins {
-	id 'org.springframework.boot' version '2.2.2.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
-	id 'java'
+    id 'org.springframework.boot' version '2.2.2.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
 }
 
 group = 'co.simplon'
@@ -9,28 +9,28 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
 //	runtimeOnly 'mysql:mysql-connector-java'
-	runtimeOnly group: 'com.h2database', name: 'h2', version: '1.4.197' // base h2 pour envoyer sur heroku
+    runtime group: 'com.h2database', name: 'h2', version: '1.4.197' // base h2 pour envoyer sur heroku
 
-	compileOnly 'org.projectlombok:lombok:1.18.10'
-	annotationProcessor 'org.projectlombok:lombok:1.18.10'
+    compileOnly 'org.projectlombok:lombok:1.18.10'
+    annotationProcessor 'org.projectlombok:lombok:1.18.10'
 
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
-	
-	// la base H2 est utilisée pour les tests uniquement (c'était avant l'utilisation de heroku)
-	testCompile group: 'com.h2database', name: 'h2', version: '1.4.197'
-	
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+
+    // la base H2 est utilisée pour les tests uniquement (c'était avant l'utilisation de heroku)
+    testCompile group: 'com.h2database', name: 'h2', version: '1.4.197'
+
 }
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
